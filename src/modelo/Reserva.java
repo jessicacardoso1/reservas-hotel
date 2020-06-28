@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.*;
 import modelo.Pessoa;
@@ -11,13 +12,13 @@ import modelo.Pessoa;
  */
 @Entity
 public class Reserva implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
+	
 	private int codigo;
 	private Date data;
 	private double valor;
 	private Pessoa cliente;
-	
+	private Collection<DiariaReservada> diarias;
 
 	public Reserva() {
 		super();
@@ -43,7 +44,7 @@ public class Reserva implements Serializable {
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}  
+	}
 	@ManyToOne
 	@JoinColumn(name="cod_pessoa")
 	public Pessoa getCliente() {
@@ -52,6 +53,15 @@ public class Reserva implements Serializable {
 
 	public void setCliente(Pessoa cliente) {
 		this.cliente = cliente;
+	}
+	@OneToMany(mappedBy="reserva", 
+			fetch=FetchType.EAGER,
+			cascade=CascadeType.ALL)
+	public Collection<DiariaReservada> getDiarias() {
+		return diarias;
+	}
+	public void setDiarias(Collection<DiariaReservada> diarias) {
+		this.diarias = diarias;
 	}
    
 }
