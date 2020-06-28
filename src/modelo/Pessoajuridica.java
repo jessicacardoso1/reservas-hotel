@@ -6,20 +6,21 @@ import javax.persistence.*;
 import modelo.Pessoa;
 
 /**
- * Entity implementation class for Entity: PessoaJuridica
+ * Entity implementation class for Entity: Pessoajuridica
  *
  */
 @Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("PJ")
-public class PessoaJuridica extends Pessoa implements Serializable {
+public class Pessoajuridica extends Pessoa implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
 	private String razaoSocial;
 	private String cnpj;
 	private String inscricaoEstadual;
 	private String inscricaoMunicipal;
-
-	public PessoaJuridica() {
+	
+	public Pessoajuridica() {
 		super();
 	}   
 	public String getRazaoSocial() {

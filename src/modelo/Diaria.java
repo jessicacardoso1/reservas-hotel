@@ -18,15 +18,12 @@ public class Diaria implements Serializable {
 	private int codigo;
 	private Date data;
 	private Collection<PessoaFisica> hospedes;
-	private Quarto quarto;
 
 	public Diaria() {
 		super();
 	}   
-
 	@Id
-	@GeneratedValue(generator="gendiaria")
-	@SequenceGenerator(name="gendiaria", sequenceName="diaria_codigo_seq")
+	@GeneratedValue
 	public int getCodigo() {
 		return this.codigo;
 	}
@@ -41,26 +38,16 @@ public class Diaria implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
 	@ManyToMany
-	@JoinTable(name="hospedagem",
-			joinColumns=@JoinColumn(name="cod_diaria"),
-			inverseJoinColumns=@JoinColumn(name="cod_pessoa"))
+	//Por ser Many to Many é necessário que crie uma tabela de relacionamentos no banco
+	@JoinTable(name = "hospedagem",
+			joinColumns = @JoinColumn(name ="cod_diaria"),
+			inverseJoinColumns = @JoinColumn(name = "cod_pessoa"))
 	public Collection<PessoaFisica> getHospedes() {
 		return hospedes;
 	}
-
 	public void setHospedes(Collection<PessoaFisica> hospedes) {
 		this.hospedes = hospedes;
-	}
-	@ManyToOne
-	@JoinColumn(name="cod_quarto")
-	public Quarto getQuarto() {
-		return quarto;
-	}
-
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
 	}
    
 }
