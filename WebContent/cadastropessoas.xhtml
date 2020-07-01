@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>Cadastro Pessoas</title>
+		<style>
+			@IMPORT url("estilo.css")
+		</style>
+	</h:head>
+	
+	<h:body>
+		<h1> Cadastro de Pessoas</h1>
+		
+		<h:form>
+			<label> Nome: <h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/></label> <br/>
+			<label> Email: <h:inputText id="Email" value="#{cadastroPessoasBean.pessoaSelecionada.email}"/></label> <br/>
+			<label> Telefone: <h:inputText id="Telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/></label> <br/>
+		
+			<h:comandButton action="#{cadastroPessoasBean.salvar}" value="Salvar" />
+			
+			<h2>List de pessoas cadastradas</h2>
+				<!-- Cada pessoa da lista está dentro da variavel p -->
+				<h:dataTable value="#{cadastroPessoasBean.lista} var="p" rowClasses="linha1, linha2">
+					<h:collumn>
+						<f:facet name="header"> Nome</f:facet>
+						#{p.nome}
+					</h:collumn>
+					<h:collumn>
+						<f:facet name="header">Email</f:facet>
+						#{p.email}
+					</h:collumn>
+					<h:collumn>
+						<f:facet name="header">Telefone</f:facet>
+						#{p.telefone}
+					</h:collumn>
+					<h:collumn>
+						<f:facet name="header">Ações</f:facet>
+						<h:comandLink value ="Editar">
+							<f:setPropertyActionListener value="#{p}" target="#{cadastroPessoaBean.pessoaSelecionada}"/>
+						</h:comandLink>
+						<h:comandLink value="Excluir" action="#{cadastroPessoasBean.excluir}">
+							<f:setPropertyActionListener value="#{p}" target="#{cadastroPessoaBean.pessoaSelecionada}"/>
+						</h:comandLink>
+					</h:collumn>
+					
+				</h:dataTable>
+		</h:form>
+	</h:body>
+</html>
