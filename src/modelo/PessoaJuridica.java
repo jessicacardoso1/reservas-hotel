@@ -18,7 +18,6 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 	private String cnpj;
 	private String inscricaoEstadual;
 	private String inscricaoMunicipal;
-
 	public PessoaJuridica() {
 		super();
 	}   

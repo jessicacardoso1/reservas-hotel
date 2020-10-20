@@ -60,7 +60,8 @@ public abstract class Pessoa implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	//Endereço não vai ser uma entidade, todos os campos dele 
+	//vão ser salvo na tab pessoa
 	@Embedded
 	public Endereco getEndereco() {
 		return endereco;

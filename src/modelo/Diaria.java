@@ -41,7 +41,7 @@ public class Diaria implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
+	//Relacionamento
 	@ManyToMany
 	@JoinTable(name="hospedagem",
 			joinColumns=@JoinColumn(name="cod_diaria"),
