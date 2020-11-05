@@ -10,20 +10,48 @@
 			@IMPORT url("estilo.css")
 		</style>
 	</h:head>
-	
 	<h:body>
 		<h1> Cadastro de Pessoas</h1>
+		<h:message styleClass="erro"></h:message>
+		<h:form>
+			<h:selectOneMenu value="#{cadastroPessoaBean.tipoNovaPessoa}">
+				<f:selectItem itemLabel ="Pessoa Fisica" itemValue="PF"/>
+				<f:selectItem itemLabel ="Pessoa Fisica" itemValue="PJ"/>
+			</h:selectOneMenu>
+		</h:form>
 		
 		<h:form>
 			<label> Nome: <h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/></label> <br/>
-			<label> Email: <h:inputText id="Email" value="#{cadastroPessoasBean.pessoaSelecionada.email}"/></label> <br/>
+			<label> Email: 
+			<h:inputText id="email" value="#{cadastroPessoasBean.pessoaSelecionada.email}" validatorMessage="Email Invalido"/></label> <br/>
+				<f:validateRegex pattern=".+@.+" ></f:validateRegex>
+				<h:message for="email" styleClass="erro"/>
 			<label> Telefone: <h:inputText id="Telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/></label> <br/>
-		
+			<label> CPF: 
+			<h:inputText id="cpf" value="#{cadastroPessoasBean.pessoaSelecionada.cpf}" validatorMessage="CPF Inválido"/>
+				<f:validateRegex pattern="\d{3}(\.\d{3})-d{2}"/>
+			<h:message for="cpf" styleClass="erro"/>
+			</label> <br/>
+			<label> Data de nascimento: 
+			<h:inputText id="dataNascimento" value="#{cadastroPessoasBean.pessoaSelecionada.dataNascimento}" converteMessage="Máscara Inválido"/>
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			<h:message for="dataNascimento" styleClass="erro"/>
+			</label><br/>
+			<label> Sexo: 
+			<!-- A pessoa selecionada vai ter um sexo(value) de acordo com o que foi marcado no selectItem -->
+			<h:selectOneRadio id="sexo" value="#{cadastroPessoasBean.pessoaSelecionada.sexo}" converteMessage="Máscara Inválido"/>
+				<f:selectItems value="#{cadastroPessoaBean.pessoaSelecionada.sexos}" var="s" itemLabel="#{s.nome}"/>
+			<h:message for="sexo" styleClass="erro"/>
+			</label><br/>
+			
+		</h:form>
+		<h:form>
 			<h:comandButton action="#{cadastroPessoasBean.salvar}" value="Salvar" />
+			<h:comandButton action="#{cadastroPessoasBean.cancelar}" value="Cancelar" />
 			
 			<h2>List de pessoas cadastradas</h2>
 				<!-- Cada pessoa da lista está dentro da variavel p -->
-				<h:dataTable value="#{cadastroPessoasBean.lista} var="p" rowClasses="linha1, linha2">
+				<h:dataTable value="#{cadastroPessoasBean.lista}" var="p" rowClasses="linha1, linha2">
 					<h:collumn>
 						<f:facet name="header"> Nome</f:facet>
 						#{p.nome}
