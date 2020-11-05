@@ -8,6 +8,18 @@
 	<h1>Meu primerio exemplo</h1>
 	
 	Bean diz:
-	#{meuPrimeiroBean.ola}
+	<h:outputText value="#{meuPrimeiroBean.ola}" rendered="#{meuPrimeiroBean.exibir}" escape ="false"/>
+	
+	<h:form>
+		<h:selectBooleanCheckbox value="#{meuPrimeiroBean.exibir}"/>
+		<h:commandButton action="" value="Enviar" />
+		
+		Link para Especializa
+		<h:outputLink value="http://www.especializa.com.br/java">Cursos de Java na Especializa</h:outputLink>
+		
+		Usando a tag link
+		<h:link outcome="cadastropessoas.jsf" value="Chamando o cadastro de Pessoas"></h:link>
+	</h:form>
+
 	</ui:composition>
 </html>
