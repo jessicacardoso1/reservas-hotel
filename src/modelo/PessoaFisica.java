@@ -37,7 +37,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-	
+	//Não precisa saber a hora da data
 	@Temporal(TemporalType.DATE)
 	public Date getDataNascimento() {
 		return this.dataNascimento;
