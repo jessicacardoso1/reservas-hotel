@@ -8,12 +8,14 @@ import javax.faces.bean.SessionScoped;
 
 import modelo.Pessoa;
 import modelo.PessoaFisica;
+import modelo.Sexo;
 
 @ManagedBean
 @SessionScoped
 public class CadastroPessoasBean {
 	private Pessoa pessoaSelecionada;
 	private Collection<Pessoa> lista;
+	private String tipoNovaPessoa;
 	
 	public CadastroPessoasBean() {
 		pessoaSelecionada = new PessoaFisica();
@@ -33,6 +35,9 @@ public class CadastroPessoasBean {
 		if(!lista.contains(pessoaSelecionada)) {
 			lista.add(pessoaSelecionada);
 		}
+	}
+	public String cancelar(){
+		return "primeiro.jsf";
 	}
 
 	public void excluir(){
@@ -54,6 +59,18 @@ public class CadastroPessoasBean {
 
 	public void setLista(Collection<Pessoa> lista) {
 		this.lista = lista;
+	}
+	
+	public Sexo[] getSexos(){
+		return Sexo.values();
+	}
+
+	public String getTipoNovaPessoa() {
+		return tipoNovaPessoa;
+	}
+
+	public void setTipoNovaPessoa(String tipoNovaPessoa) {
+		this.tipoNovaPessoa = tipoNovaPessoa;
 	}
 	
 	
