@@ -11,7 +11,7 @@
 		</style>
 	</h:head>
 	<h:body>
-	<h:graphicImage name="especializa.jpg" library="image">
+	<h:graphicImage name="especializa.jpg"  library="image">
 		<h1> Cadastro de Pessoas</h1>
 		<h:message styleClass="erro"></h:message>
 		<h:form>
@@ -56,8 +56,8 @@
 		</h:panelGroup>	
 		</h:form>
 		<h:form>
-			<h:comandButton action="#{cadastroPessoasBean.salvar}" value="Salvar" />
-			<h:comandButton action="#{cadastroPessoasBean.cancelar}" value="Cancelar" />
+			<h:comandButton action="#{cadastroPessoasBean.salvar}" image="#{resource['imagens:salvar.png']}"/>
+			<h:comandButton action="#{cadastroPessoasBean.cancelar}" image="#{resource['imagens.cancelar.png']}" />
 			
 			<h2>List de pessoas cadastradas</h2>
 				<!-- Cada pessoa da lista está dentro da variavel p -->
