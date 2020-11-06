@@ -11,6 +11,7 @@
 		</style>
 	</h:head>
 	<h:body>
+	<h:graphicImage name="especializa.jpg" library="image">
 		<h1> Cadastro de Pessoas</h1>
 		<h:message styleClass="erro"></h:message>
 		<h:form>
@@ -21,29 +22,38 @@
 		</h:form>
 		
 		<h:form>
-			<label> Nome: <h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/></label> <br/>
-			<label> Email: 
-			<h:inputText id="email" value="#{cadastroPessoasBean.pessoaSelecionada.email}" validatorMessage="Email Invalido"/></label> <br/>
-				<f:validateRegex pattern=".+@.+" ></f:validateRegex>
-				<h:message for="email" styleClass="erro"/>
-			<label> Telefone: <h:inputText id="Telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/></label> <br/>
-			<label> CPF: 
-			<h:inputText id="cpf" value="#{cadastroPessoasBean.pessoaSelecionada.cpf}" validatorMessage="CPF Inválido"/>
-				<f:validateRegex pattern="\d{3}(\.\d{3})-d{2}"/>
-			<h:message for="cpf" styleClass="erro"/>
-			</label> <br/>
-			<label> Data de nascimento: 
-			<h:inputText id="dataNascimento" value="#{cadastroPessoasBean.pessoaSelecionada.dataNascimento}" converteMessage="Máscara Inválido"/>
-				<f:convertDateTime pattern="dd/MM/yyyy"/>
-			<h:message for="dataNascimento" styleClass="erro"/>
-			</label><br/>
-			<label> Sexo: 
-			<!-- A pessoa selecionada vai ter um sexo(value) de acordo com o que foi marcado no selectItem -->
-			<h:selectOneRadio id="sexo" value="#{cadastroPessoasBean.pessoaSelecionada.sexo}" converteMessage="Máscara Inválido"/>
-				<f:selectItems value="#{cadastroPessoaBean.pessoaSelecionada.sexos}" var="s" itemLabel="#{s.nome}"/>
-			<h:message for="sexo" styleClass="erro"/>
-			</label><br/>
-			
+			<h:panelGrid colomuns="3">
+				<h:outputLabel for ="nome" value="Nome"/>
+				<h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/></label> <br/>
+				<h:message for="nome"/>
+				
+				<h:outputLabel value="Email" for="email" />> Email: 
+				<h:inputText id="email" value="#{cadastroPessoasBean.pessoaSelecionada.email}" validatorMessage="Email Invalido"/></label> <br/>
+					<f:validateRegex pattern=".+@.+" ></f:validateRegex>
+					<h:message for="email" styleClass="erro"/>
+				
+				<h:outputLabel for ="telefone" value="Nome"/>
+				<h:inputText id="telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/></label> <br/>
+				<h:message for="telefone"/>
+			</h:panelGrid>
+			<h:panelGroup id="painelPF" styleClass="painelPF" rendered="false" layout="block">
+				<label> CPF: 
+				<h:inputText id="cpf" value="#{cadastroPessoasBean.pessoaSelecionada.cpf}" validatorMessage="CPF Inválido"/>
+					<f:validateRegex pattern="\d{3}(\.\d{3})-d{2}"/>
+				<h:message for="cpf" styleClass="erro"/>
+				</label>
+				<label> Data de nascimento: 
+				<h:inputText id="dataNascimento" value="#{cadastroPessoasBean.pessoaSelecionada.dataNascimento}" converteMessage="Máscara Inválido"/>
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				<h:message for="dataNascimento" styleClass="erro"/>
+				</label>
+				<label> Sexo: 
+				<!-- A pessoa selecionada vai ter um sexo(value) de acordo com o que foi marcado no selectItem -->
+				<h:selectOneRadio id="sexo" value="#{cadastroPessoasBean.pessoaSelecionada.sexo}" converteMessage="Máscara Inválido"/>
+					<f:selectItems value="#{cadastroPessoaBean.pessoaSelecionada.sexos}" var="s" itemLabel="#{s.nome}"/>
+				<h:message for="sexo" styleClass="erro"/>
+				</label>
+		</h:panelGroup>	
 		</h:form>
 		<h:form>
 			<h:comandButton action="#{cadastroPessoasBean.salvar}" value="Salvar" />
