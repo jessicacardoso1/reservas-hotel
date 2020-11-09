@@ -3,8 +3,10 @@ package beans;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import modelo.Pessoa;
 import modelo.PessoaFisica;
@@ -43,6 +45,8 @@ public class CadastroPessoasBean {
 	public void excluir(){
 		lista.remove(pessoaSelecionada);
 		pessoaSelecionada = new PessoaFisica();
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa excluída com sucesso!", null));
 	}
 	
 	public Pessoa getPessoaSelecionada() {

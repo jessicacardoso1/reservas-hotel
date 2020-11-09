@@ -11,9 +11,9 @@
 		</style>
 	</h:head>
 	<h:body>
-	<h:graphicImage name="especializa.jpg"  library="image">
+	<h:graphicImage name="especializa.jpg"  library="image"/>
 		<h1> Cadastro de Pessoas</h1>
-		<h:message styleClass="erro"></h:message>
+		<h:message infoClass="info" errorClass="erro" warnClass="warn" fatalClass="fatal"></h:message>
 		<h:form>
 			<h:selectOneMenu value="#{cadastroPessoaBean.tipoNovaPessoa}">
 				<f:selectItem itemLabel ="Pessoa Fisica" itemValue="PF"/>
@@ -24,16 +24,16 @@
 		<h:form>
 			<h:panelGrid colomuns="3">
 				<h:outputLabel for ="nome" value="Nome"/>
-				<h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/></label> <br/>
+				<h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}"/>
 				<h:message for="nome"/>
 				
 				<h:outputLabel value="Email" for="email" />> Email: 
-				<h:inputText id="email" value="#{cadastroPessoasBean.pessoaSelecionada.email}" validatorMessage="Email Invalido"/></label> <br/>
+				<h:inputText id="email" value="#{cadastroPessoasBean.pessoaSelecionada.email}" validatorMessage="Email Invalido"/>
 					<f:validateRegex pattern=".+@.+" ></f:validateRegex>
 					<h:message for="email" styleClass="erro"/>
 				
 				<h:outputLabel for ="telefone" value="Nome"/>
-				<h:inputText id="telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/></label> <br/>
+				<h:inputText id="telefone" value="#{cadastroPessoasBean.pessoaSelecionada.telefone}"/>
 				<h:message for="telefone"/>
 			</h:panelGrid>
 			<h:panelGroup id="painelPF" styleClass="painelPF" rendered="false" layout="block">

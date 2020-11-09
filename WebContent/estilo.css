@@ -18,7 +18,20 @@ tr.linha2 > td{
 	background-color: #FFF;
 }
 
-erro{
+.info{
+	color: #00F;
+}
+
+.warn {
+	color: #CC0;
+}
+
+.erro{
 	color: #F00;
 }
+
+.fatal {
+	color: #F00;
+	font-weight: bold;
+}  
 
